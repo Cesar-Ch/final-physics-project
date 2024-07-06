@@ -75,6 +75,9 @@ const moveRight = () => {
 
     posx += v;
     objeto.style.marginLeft = `${posx}px`;
+    console.log(posx);
+    console.log(dmax);
+    console.log(v0 - v)
 };
 
 btnIniciar.addEventListener("click", (e) => {
@@ -83,16 +86,36 @@ btnIniciar.addEventListener("click", (e) => {
     k = parseFloat(inputK.value);
     m = parseFloat(inputM.value);
     u = parseFloat(inputU.value);
+    if (x >= 0 && k >= 0 && m >= 0 && u >= 0) {
+        // Resetear la posición inicial
+        inputX.style.border = "0px";
+        inputK.style.border = "0px";
+        inputM.style.border = "0px";
+        inputU.style.border = "0px";
 
-    // Resetear la posición inicial
-    posx = 0;
-    objeto.style.marginLeft = `0px`;
+        posx = 0;
+        objeto.style.marginLeft = `0px`;
 
-    calcularEpe();
-    calcularV0();
-    calcularA();
-    calcularDmax();
+        calcularEpe();
+        calcularV0();
+        calcularA();
+        calcularDmax();
 
-    interval = setInterval(moveRight, 1000);
-    btnIniciar.disabled = true;
+        interval = setInterval(moveRight, 1000);
+        btnIniciar.disabled = true;
+    }
+    if (x < 0 || isNaN(x)) {
+        inputX.style.border = "2px solid red";
+    }
+    if (k < 0 || isNaN(k)) {
+        inputK.style.border = "2px solid red";
+    }
+    if (m < 0 || isNaN(m)) {
+        inputM.style.border = "2px solid red";
+    }
+    if (u < 0 || isNaN(u)) {
+        inputU.style.border = "2px solid red";
+    }
+
+
 });
